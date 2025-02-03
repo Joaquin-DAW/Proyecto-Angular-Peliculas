@@ -1,0 +1,13 @@
+<p>peliculas works!</p>
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  @for (pelicula of peliculas; track pelicula.id) {
+    <div style="display: inline-block; margin: 10px;">
+      <img 
+        [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" 
+        alt="{{ pelicula.title }}" 
+        style="width: 200px; height: auto; display: block;">
+      <h3 style="text-align: center;">{{ pelicula.title }}</h3>
+    </div>
+  }
+</div>
