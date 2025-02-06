@@ -17,8 +17,12 @@ export class PeliculasComponent {
   }
 
   cargarPeliculas(): void {
-    this.peliculasService.getPeliculas().subscribe(data => {
-      this.peliculas = data.results;  
-    });
+    const totalPages = 1; // Por ejemplo, combinamos 3 páginas (aprox. 60 películas)
+    for (let page = 1; page <= totalPages; page++) {
+      this.peliculasService.getPeliculas(page).subscribe(response => {
+        // Suponemos que response.results es el arreglo de películas
+        this.peliculas = this.peliculas.concat(response.results);
+      });
+    }
   }
 }

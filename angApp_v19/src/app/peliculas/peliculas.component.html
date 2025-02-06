@@ -1,13 +1,43 @@
-<p>peliculas works!</p>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Películas Molonas</title>
+</head>
+<body class="d-flex flex-column min-vh-100">
 
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-  @for (pelicula of peliculas; track pelicula.id) {
-    <div style="display: inline-block; margin: 10px;">
-      <img 
-        [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" 
-        alt="{{ pelicula.title }}" 
-        style="width: 200px; height: auto; display: block;">
-      <h3 style="text-align: center;">{{ pelicula.title }}</h3>
+  <!-- NAVBAR STICKY -->
+  <nav class="navbar navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">Películas Molonas de verdad</a>
     </div>
-  }
-</div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <div class="container mt-4 flex-grow-1">
+    <div class="row g-4">
+      @for (pelicula of peliculas; track pelicula.id) {
+        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+          <div class="card h-100 shadow-sm border-0">
+            <img 
+              [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" 
+              class="card-img-top rounded" 
+              alt="{{ pelicula.title }}">
+            <div class="card-body text-center">
+              <h6 class="card-title fw-bold">{{ pelicula.title }}</h6>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- FOOTER FIJO -->
+  <footer class="bg-dark text-light text-center py-3 mt-4">
+    <p class="mb-0">© 2025 Películas Molonas | Todos los derechos reservados a mí</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
