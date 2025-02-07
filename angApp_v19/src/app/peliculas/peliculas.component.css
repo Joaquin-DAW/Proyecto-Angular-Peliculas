@@ -1,0 +1,8 @@
+.carousel-img {
+    max-height: 500px;
+    object-fit: contain; /* O "cover", según el efecto deseado */
+  }
+
+.carousel-indicators [data-bs-target]{
+    border-bottom: 0px;
+}

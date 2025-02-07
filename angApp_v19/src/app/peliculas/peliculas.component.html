@@ -3,16 +3,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Películas Molonas</title>
+  <title>Películas</title>
 </head>
+
 <body class="d-flex flex-column min-vh-100">
 
   <!-- NAVBAR STICKY -->
   <nav class="navbar navbar-dark bg-dark sticky-top">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">Películas Molonas de verdad</a>
+      <a class="navbar-brand fw-bold" href="#">Películas y tal</a>
     </div>
   </nav>
+  
+  <!-- CARRUSEL-->
+
+  <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <ol class="carousel-indicators">
+      @for (pelicula of peliculasCarrusel; track pelicula.id) {
+        <li 
+          [attr.data-bs-target]="'#carouselExampleIndicators'" 
+          [attr.data-bs-slide-to]="peliculasCarrusel.indexOf(pelicula)"
+          class="{{ peliculasCarrusel.indexOf(pelicula) == 0 ? 'active' : '' }}">
+        </li>
+      }
+    </ol>
+    <div class="carousel-inner">
+      @for (pelicula of peliculasCarrusel; track pelicula.id) {
+        <div class="carousel-item" [class.active]="pelicula.id==peliculasCarrusel[0].id">
+          <img 
+            class="d-block w-100 carousel-img" 
+            [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" 
+            [alt]="pelicula.title">
+        </div>
+      }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Anterior</span>
+    </button>
+    
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Siguiente</span>
+    </button>
+  </div>
 
   <!-- CONTENIDO PRINCIPAL -->
   <div class="container mt-4 flex-grow-1">

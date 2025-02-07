@@ -9,6 +9,7 @@ import { PeliculasService } from '../services/peliculas.service';
 })
 export class PeliculasComponent {
   peliculas: any[] = [];
+  peliculasCarrusel: any[] = [];
 
   constructor(private peliculasService: PeliculasService) { }
 
@@ -18,11 +19,17 @@ export class PeliculasComponent {
 
   cargarPeliculas(): void {
     const totalPages = 1; // Por ejemplo, combinamos 3 páginas (aprox. 60 películas)
+    
     for (let page = 1; page <= totalPages; page++) {
       this.peliculasService.getPeliculas(page).subscribe(response => {
         // Suponemos que response.results es el arreglo de películas
         this.peliculas = this.peliculas.concat(response.results);
       });
     }
+
+    this.peliculasService.getPeliculas().subscribe(response => {
+      // Suponemos que response.results es el arreglo de películas
+      this.peliculasCarrusel = response.results.slice(0,5);
+    });
   }
 }
