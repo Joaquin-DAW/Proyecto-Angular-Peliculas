@@ -9,6 +9,7 @@ import { PeliculasService } from '../services/peliculas.service';
 })
 export class PeliculasComponent {
   peliculas: any[] = [];
+  busqueda: string = ""; // Variable de búsqueda
   peliculasCarrusel: any[] = [];
 
   constructor(private peliculasService: PeliculasService) { }
@@ -31,5 +32,12 @@ export class PeliculasComponent {
       // Suponemos que response.results es el arreglo de películas
       this.peliculasCarrusel = response.results.slice(0,5);
     });
+  }
+  
+  // Función para filtrar películas
+  peliculasFiltradas(): any[] {
+    return this.peliculas.filter(pelicula => 
+      pelicula.title.toLowerCase().includes(this.busqueda.toLowerCase())
+    );
   }
 }
