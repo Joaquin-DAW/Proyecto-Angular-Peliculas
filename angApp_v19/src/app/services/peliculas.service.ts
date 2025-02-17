@@ -18,4 +18,9 @@ export class PeliculasService {
 
     return this.http.get<any>(url, { headers });
   }
+
+  buscarPeliculas(query: string): Observable<any> {
+    const url = `${this.apiUrl}search/movie?api_key=${this.apiKey}&language=es-ES&query=${query}`;
+    return this.http.get<any>(url);
+  }
 }
