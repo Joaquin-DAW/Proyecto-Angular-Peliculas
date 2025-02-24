@@ -36,13 +36,13 @@ export class ContactoComponent {
 
     emailjs.send('service_8vz167s', 'template_h8poldn', templateParams, 'HtJNZYgIZotgbFx99')
       .then(() => {
-        this.mensajeEnviado = true;
-        this.errorEnvio = false;
+        this.mensajeEnviado = true; // Si se envía con éxito, muestra el mensaje de éxito
+        this.errorEnvio = false;  // Oculta el mensaje de error
         this.contactoForm.reset(); // Limpia el formulario después del envío
       })
       .catch(() => {
-        this.mensajeEnviado = false;
-        this.errorEnvio = true;
+        this.mensajeEnviado = false; // Oculta el mensaje de éxito
+        this.errorEnvio = true; // Muestra el mensaje de error
       });
   }
 }

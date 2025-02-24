@@ -18,8 +18,8 @@ export class BusquedaComponent {
 
   constructor(private route: ActivatedRoute, private apiService: ApiService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+  ngOnInit(): void {                          //Se ejecuta automaticamente cuando carga el componente
+    this.route.paramMap.subscribe(params => { //obitiene el nombre de la pelicula de la url
       this.query = params.get('query') || ''; // Obtenemos el valor de la URL
       if (this.query.trim() !== '') {
         this.buscarPeliculas(); //Llamamos a la función para buscar películas
