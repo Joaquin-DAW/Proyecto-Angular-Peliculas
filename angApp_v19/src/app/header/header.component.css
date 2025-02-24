@@ -1,0 +1,37 @@
+/* Estilo para el nombre de la web */
+.site-title {
+    color: #f8d210; /* Amarillo dorado */
+    font-size: 1.5rem;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .site-title:hover {
+    color: #ffdd57; /* Color más claro al pasar el mouse */
+  }
+  
+  /* Estilo del navbar */
+  .navbar {
+    padding: 15px 0;
+    font-size: 1.1rem;
+  }
+  
+  /* Ajuste de alineación de los elementos */
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  /* Estilo especial para el botón de contacto */
+  .special-contact {
+    background-color: #dc3545; /* Rojo vibrante */
+    color: white !important;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .special-contact:hover {
+    background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
+  }
+  

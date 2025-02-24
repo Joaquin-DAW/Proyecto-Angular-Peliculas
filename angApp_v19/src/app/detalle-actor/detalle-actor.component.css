@@ -1,0 +1,95 @@
+/* 🔹 Estilos generales */
+.container {
+    max-width: 1000px;
+  }
+  
+  /* 🔹 Contenedor del actor (para hacerlo más ancho) */
+  .actor-info-container {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px; /* Espacio entre imagen y detalles */
+    flex-wrap: wrap;
+  }
+  
+  /* 🔹 Imagen del actor */
+  .actor-image {
+    border-radius: 10px;
+    width: 300px;
+    height: auto;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* 🔹 Detalles del actor */
+  .actor-details {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .actor-name {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  
+  .actor-bio {
+    font-size: 1rem;
+    text-align: justify;
+    line-height: 1.5;
+  }
+  
+  /* 🔹 Sección de películas */
+  .peliculas-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 40px;
+  }
+  
+  /* 🔹 Contenedor de películas (distribuir en una fila más ancha) */
+  .peliculas-container {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px;
+  }
+  
+  /* 🔹 Tarjetas de películas */
+  .pelicula-card {
+    width: 180px;
+    text-align: center;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .pelicula-card:hover {
+    transform: scale(1.05);
+  }
+  
+  /* 🔹 Imagen de la película */
+  .pelicula-img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* 🔹 Título de la película */
+  .pelicula-title {
+    font-size: 1rem;
+    margin-top: 8px;
+    font-weight: bold;
+  }
+  
+  /* 🔹 Fecha de estreno */
+  .pelicula-date {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+  }
+  
+  /* 🔹 Si no hay películas */
+  .peliculas-empty {
+    text-align: center;
+    font-size: 1rem;
+    color: #888;
+    margin-top: 20px;
+  }
+  

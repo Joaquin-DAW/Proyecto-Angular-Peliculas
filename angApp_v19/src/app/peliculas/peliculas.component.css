@@ -1,8 +1,78 @@
-.carousel-img {
-    max-height: 500px;
-    object-fit: contain; /* O "cover", según el efecto deseado */
-  }
 
-.carousel-indicators [data-bs-target]{
-    border-bottom: 0px;
+.mt-4 {
+  margin-top: 2rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 2rem !important;
+}
+
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+
+.carousel-img {
+  max-height: 500px;
+  object-fit: contain;
+}
+
+/* Flechas del carrusel */
+.carousel-control-prev, 
+.carousel-control-next {
+  width: 50px; /* Tamaño moderado */
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con transparencia */
+  border-radius: 50%;
+  border: 2px solid black; /* Borde negro */
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+
+  position: absolute;
+  top: 50%; /* Centramos verticalmente */
+  transform: translateY(-50%); /* Ajustamos la posición exacta */
+}
+
+/* Separar un poco las flechas del borde del carrusel */
+.carousel-control-prev {
+  left: 15px; /* Lo acercamos al carrusel */
+}
+
+.carousel-control-next {
+  right: 15px; /* Lo acercamos al carrusel */
+}
+
+/* Efecto al pasar el mouse */
+.carousel-control-prev:hover, 
+.carousel-control-next:hover {
+  background-color: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+/* Asegurar que las flechas sean bien visibles */
+.carousel-control-prev-icon, 
+.carousel-control-next-icon {
+  filter: invert(1); /* Iconos negros */
+  width: 25px;
+  height: 25px;
+}
+
+.card {
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+.card img {
+  max-height: 250px;
+  object-fit: contain;
+}
+
+
+h2 {
+  color: #333;
+  font-size: 1.8rem;
+  font-weight: bold;
 }

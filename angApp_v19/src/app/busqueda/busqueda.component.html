@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <h3>Buscar películas</h3>
+
+  <!-- Barra de búsqueda -->
+  <div class="row mb-3">
+    <div class="col-md-6 offset-md-3">
+      <input 
+        type="text" 
+        class="form-control search-box" 
+        placeholder="Buscar película..." 
+        [(ngModel)]="busquedaNueva" 
+        (keyup.enter)="buscarOtraPelicula()" />
+    </div>
+  </div>
+
+  <!-- Filtros -->
+  @if (resultados.length > 0) {
+    <div class="row mb-3">
+      <div class="col-md-4 offset-md-4">
+        <select class="form-select filter-select" [(ngModel)]="ordenar" (change)="ordenarResultados()">
+          <option value="default">Ordenar por...</option>
+          <option value="titulo-asc">Título (A-Z)</option>
+          <option value="titulo-desc">Título (Z-A)</option>
+          <option value="fecha-asc">Fecha de Estreno (Antiguo a Reciente)</option>
+          <option value="fecha-desc">Fecha de Estreno (Reciente a Antiguo)</option>
+        </select>
+      </div>
+    </div>
+  }
+
+  <!-- Mensaje si no hay resultados -->
+  @if (resultados.length === 0) {
+    <p class="text-center">Ingresa una búsqueda para encontrar películas.</p>
+  }
+
+  <!-- Resultados de Películas -->
+  @if (resultados.length > 0) {
+    <h4 class="mt-4">Resultados de búsqueda para "{{ query }}"</h4>
+    <div class="row row-cols-3 row-cols-md-4 row-cols-lg-5 g-2">
+      @for (pelicula of resultados; track pelicula.id) {
+        <div class="col">
+          <a [routerLink]="['/pelicula', pelicula.id]" class="text-decoration-none text-dark">
+            <div class="card shadow-sm border-0">
+              <img 
+                [src]="'https://image.tmdb.org/t/p/w500' + pelicula.poster_path" 
+                class="card-img-top" 
+                alt="{{ pelicula.title }}">
+              <div class="card-body">
+                <h5 class="card-title">{{ pelicula.title }}</h5>
+                <p class="text-muted">Fecha de estreno: {{ pelicula.release_date }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      }
+    </div>
+  }
+</div>

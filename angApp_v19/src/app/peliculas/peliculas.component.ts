@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { PeliculasService } from '../services/peliculas.service';
-import { CommonModule } from '@angular/common';
+import { ApiService } from '../services/api.service';
+import { Router, RouterModule  } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-peliculas',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [FormsModule, RouterModule],
   templateUrl: './peliculas.component.html',
   styleUrl: './peliculas.component.css'
 })
@@ -16,37 +16,32 @@ export class PeliculasComponent {
   peliculasCarrusel: any[] = [];
   peliculasBusqueda: any[] = [];
 
-  constructor(private peliculasService: PeliculasService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
     this.cargarPeliculas();
   }
 
   cargarPeliculas(): void {
-    const totalPages = 1; // Por ejemplo, combinamos 3 páginas (aprox. 60 películas)
+    const totalPages = 1;
     
     for (let page = 1; page <= totalPages; page++) {
-      this.peliculasService.getPeliculas(page).subscribe(response => {
+      this.apiService.getPeliculas(page).subscribe(response => {
         // Suponemos que response.results es el arreglo de películas
         this.peliculas = this.peliculas.concat(response.results);
       });
     }
 
     // Cargar películas para el carrusel (primeras 5) 
-    this.peliculasService.getPeliculas().subscribe(response => {
+    this.apiService.getPeliculas().subscribe(response => {
       // Suponemos que response.results es el arreglo de películas
       this.peliculasCarrusel = response.results.slice(0,5);
     });
   }
 
   buscarPeliculas(): void {
-      if (this.busqueda.trim() === "") {
-        this.peliculasBusqueda = []; // Si el usuario borra el texto, limpiamos la búsqueda
-        return;
-      }
-  
-      this.peliculasService.buscarPeliculas(this.busqueda).subscribe(response => {
-        this.peliculasBusqueda = response.results; // Guardamos los resultados de la búsqueda
-      });
+    if (this.busqueda.trim() === "") return;
+    this.router.navigate(['/buscar', this.busqueda]); // Redirige a la pagina de busqueda
   }
+  
 }

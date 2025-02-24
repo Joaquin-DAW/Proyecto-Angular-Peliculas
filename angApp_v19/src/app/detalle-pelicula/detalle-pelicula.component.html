@@ -1,0 +1,54 @@
+<div class="container mt-4">
+    <div class="row">
+      <!-- Cartel de la película -->
+      <div class="col-md-4 text-center">
+        <img [src]="'https://image.tmdb.org/t/p/w500' + pelicula?.poster_path" 
+             class="img-fluid rounded movie-poster" 
+             [alt]="pelicula?.title">
+      </div>
+  
+      <!-- Información de la película -->
+      <div class="col-md-8">
+        <h2 class="mb-3">{{ pelicula?.title }}</h2>
+        <p><strong>Fecha de estreno:</strong> {{ pelicula?.release_date }}</p>
+        <p><strong>Director:</strong> {{ director }}</p>
+        <p>{{ pelicula?.overview || 'Descripción no disponible' }}</p>
+      </div>
+    </div>
+  
+    <!-- Mostrar tráiler si existe -->
+    @if (trailerUrl) {
+      <div class="trailer-container mt-4">
+        <iframe class="trailer-video" [src]="trailerUrl" allowfullscreen></iframe>
+      </div>
+    } @else {
+      <p class="text-center mt-3">No hay tráiler disponible</p>
+    }
+  
+    <!-- Mostrar reparto -->
+    <h3 class="mt-5">Reparto</h3>
+    @if (reparto.length > 0) {
+      <div class="row reparto-container">
+        @for (actor of reparto; track actor.id) {
+          <div class="col-6 col-md-4 col-lg-2 text-center reparto-card">
+            <a [routerLink]="['/actor', actor.id]">
+              @if (actor.profile_path) {
+                <img [src]="'https://image.tmdb.org/t/p/w200' + actor.profile_path" 
+                     class="rounded-circle actor-img" 
+                     [alt]="actor.name">
+              } @else {
+                <div class="rounded-circle bg-secondary text-light d-flex align-items-center justify-content-center no-img">
+                  <span>Sin foto</span>
+                </div>
+              }
+            </a>
+            <p class="actor-name"><strong>{{ actor.name }}</strong></p>
+            <p class="text-muted actor-role">{{ actor.character }}</p>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="text-center">No hay información de reparto disponible.</p>
+    }
+  </div>
+  

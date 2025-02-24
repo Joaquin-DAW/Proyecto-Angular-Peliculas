@@ -1,0 +1,41 @@
+<div class="container mt-4">
+    <!-- Información del actor -->
+    <div class="actor-info-container">
+      <!-- Imagen grande del actor -->
+      @if (actor?.profile_path) {
+        <img [src]="'https://image.tmdb.org/t/p/w300' + actor.profile_path" class="actor-image">
+      } @else {
+        <p>No hay imagen disponible</p>
+      }
+  
+      <!-- Datos del actor -->
+      <div class="actor-details">
+        <h2 class="actor-name">{{ actor?.name }}</h2>
+        <p><strong>Fecha de nacimiento:</strong> {{ actor?.birthday || 'No disponible' }}</p>
+        <p><strong>Lugar de nacimiento:</strong> {{ actor?.place_of_birth || 'No disponible' }}</p>
+        <p class="actor-bio">{{ actor?.biography || 'Descripción no disponible' }}</p>
+      </div>
+    </div>
+  
+    <!-- Películas en las que ha participado -->
+    <h3 class="peliculas-title">Películas en las que ha participado</h3>
+    
+    @if (peliculas.length > 0) {
+      <div class="peliculas-container">
+        @for (pelicula of peliculas; track pelicula.id) {
+          <div class="pelicula-card">
+            <a [routerLink]="['/pelicula', pelicula.id]" class="pelicula-link">
+              <img [src]="'https://image.tmdb.org/t/p/w200' + pelicula.poster_path" 
+                   class="pelicula-img" 
+                   [alt]="pelicula.title">
+              <p class="pelicula-title"><strong>{{ pelicula.title }}</strong></p>
+              <p class="pelicula-date">{{ pelicula.release_date?.slice(0, 4) || 'N/A' }}</p>
+            </a>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="peliculas-empty">No hay información de películas disponible.</p>
+    }
+  </div>
+  
