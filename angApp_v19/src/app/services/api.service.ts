@@ -15,9 +15,7 @@ export class ApiService {
 
   getPeliculas(page: number = 1): Observable<any> {
     const url = `${this.apiUrl}movie/popular?api_key=${this.apiKey}&page=${page}`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.http.get<any>(url, { headers });
+    return this.http.get<any>(url);
   }
 
   buscarPeliculas(query: string): Observable<any> {
@@ -27,13 +25,7 @@ export class ApiService {
 
   getReparto(id: number): Observable<any> {
     const url = `${this.apiUrl}movie/${id}/credits?api_key=${this.apiKey}&language=es-ES`;
-    return this.http.get<any>(url).pipe(
-      map(response => response.cast.map((actor: any) => ({
-        nombre: actor.name,
-        personaje: actor.character,
-        foto: actor.profile_path ? `https://image.tmdb.org/t/p/w200${actor.profile_path}` : 'https://via.placeholder.com/200x300?text=No+Image'
-      })))
-    );
+    return this.http.get<any>(url);
   }
 
   getDetallesPelicula(id: number): Observable<any> {
